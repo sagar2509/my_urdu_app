@@ -1,6 +1,6 @@
 {
-    "name": "setup_tools_createnewworkspace",
-    "short_name": "setup_tools_createnewworkspace",
+    "name": "my_urdu_app",
+    "short_name": "my_urdu_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,0 +1,374 @@
+import '../models/urdu_char.dart';
+
+class CharRegistry {
+  static List<UrduChar> getAllChars() {
+    return [
+      // 1. Alif (The Vertical Stick)
+      UrduChar(
+          glyph: "ا",
+          phonetic: "Alif",
+          family: "alif",
+          initial: "ا",
+          middle: "ـا",
+          finalForm: "ـا"),
+
+      // 2. Alif Madda (The Alif with a Wave)
+      UrduChar(
+          glyph: "آ",
+          phonetic: "Alif Madda",
+          isDelta: true,
+          family: "alif",
+          initial: "آ",
+          middle: "ـآ",
+          finalForm: "ـآ"),
+
+      // 3. Be (The Boat)
+      UrduChar(
+          glyph: "ب",
+          phonetic: "Be",
+          family: "boat",
+          initial: "بـ",
+          middle: "ـبـ",
+          finalForm: "ـب"),
+
+      // 4. Pe (The Boat with a Dot)
+      UrduChar(
+          glyph: "پ",
+          phonetic: "Pe",
+          isDelta: true,
+          family: "boat",
+          initial: "پـ",
+          middle: "ـپـ",
+          finalForm: "ـپ"),
+
+      // 5. Te (The Boat with a Dot)
+      UrduChar(
+          glyph: "ت",
+          phonetic: "Te",
+          family: "boat",
+          initial: "تـ",
+          middle: "ـتـ",
+          finalForm: "ـت"),
+
+      // 6. Tte (The Boat with Two Dots)
+      UrduChar(
+          glyph: "ٹ",
+          phonetic: "Tte",
+          isDelta: true,
+          family: "boat",
+          initial: "ٹـ",
+          middle: "ـٹـ",
+          finalForm: "ـٹ"),
+
+      // 7. Se (The Boat with a Dot)
+      UrduChar(
+          glyph: "ث",
+          phonetic: "Se",
+          family: "boat",
+          initial: "ثـ",
+          middle: "ـثـ",
+          finalForm: "ـث"),
+
+      // 8. Jeem (The Hook)
+      UrduChar(
+          glyph: "ج",
+          phonetic: "Jeem",
+          family: "hook",
+          initial: "جـ",
+          middle: "ـجـ",
+          finalForm: "ـج"),
+
+      // 9. Che (The Hook with a Dot)
+      UrduChar(
+          glyph: "چ",
+          phonetic: "Che",
+          isDelta: true,
+          family: "hook",
+          initial: "چـ",
+          middle: "ـچـ",
+          finalForm: "ـچ"),
+
+      // 10. He (The Hook with a Dot)
+      UrduChar(
+          glyph: "ح",
+          phonetic: "Barri He",
+          family: "hook",
+          initial: "حـ",
+          middle: "ـحـ",
+          finalForm: "ـح"),
+
+      // 11. Khe (The Hook with a Dot)
+      UrduChar(
+          glyph: "خ",
+          phonetic: "Khe",
+          family: "hook",
+          initial: "خـ",
+          middle: "ـخـ",
+          finalForm: "ـخ"),
+
+      // 12. Dal (The Angle)
+      UrduChar(
+          glyph: "د",
+          phonetic: "Dal",
+          family: "angle",
+          initial: "د",
+          middle: "ـد",
+          finalForm: "ـد"),
+
+      // 13. Ddal (The Angle with a Dot)
+      UrduChar(
+          glyph: "ڈ",
+          phonetic: "Ddal",
+          isDelta: true,
+          family: "angle",
+          initial: "ڈ",
+          middle: "ـڈ",
+          finalForm: "ـڈ"),
+
+      // 14. Zaal (The Angle with a Dot)
+      UrduChar(
+          glyph: "ذ",
+          phonetic: "Zaal",
+          family: "angle",
+          initial: "ذ",
+          middle: "ـذ",
+          finalForm: "ـذ"),
+
+      // 15. Re (The Slide)
+      UrduChar(
+          glyph: "ر",
+          phonetic: "Re",
+          family: "slide",
+          initial: "ر",
+          middle: "ـر",
+          finalForm: "ـر"),
+
+      // 16. Rre (The Slide with a Dot)
+      UrduChar(
+          glyph: "ڑ",
+          phonetic: "Rre",
+          isDelta: true,
+          family: "slide",
+          initial: "ڑ",
+          middle: "ـڑ",
+          finalForm: "ـڑ"),
+
+      // 17. Ze (The Slide with a Dot)
+      UrduChar(
+          glyph: "ز",
+          phonetic: "Ze",
+          family: "slide",
+          initial: "ز",
+          middle: "ـز",
+          finalForm: "ـز"),
+
+      // 18. Zhe (The Slide with a Dot)
+      UrduChar(
+          glyph: "ژ",
+          phonetic: "Zhe",
+          isDelta: true,
+          family: "slide",
+          initial: "ژ",
+          middle: "ـژ",
+          finalForm: "ـژ"),
+
+      // 19. Kaaf (The Stick)
+      UrduChar(
+          glyph: "ک",
+          phonetic: "Kaaf",
+          family: "stick",
+          initial: "ک",
+          middle: "ـک",
+          finalForm: "ـک"),
+
+      // 20. Gaaf (The Stick with a Dot)
+      UrduChar(
+          glyph: "گ",
+          phonetic: "Gaaf",
+          isDelta: true,
+          family: "stick",
+          initial: "گ",
+          middle: "ـگ",
+          finalForm: "ـگ"),
+
+      // 21. Seen (The Loop)
+      UrduChar(
+          glyph: "س",
+          phonetic: "Seen",
+          family: "loop",
+          initial: "سـ",
+          middle: "ـسـ",
+          finalForm: "ـس"),
+
+      // 22. Sheen (The Loop with a Dot)
+      UrduChar(
+          glyph: "ش",
+          phonetic: "Sheen",
+          family: "loop",
+          initial: "شـ",
+          middle: "ـشـ",
+          finalForm: "ـش"),
+
+      // 23. Suad (The Oval)
+      UrduChar(
+          glyph: "ص",
+          phonetic: "Suad",
+          family: "oval",
+          initial: "صـ",
+          middle: "ـصـ",
+          finalForm: "ـص"),
+
+      // 24. Zuad (The Oval with a Dot)
+      UrduChar(
+          glyph: "ض",
+          phonetic: "Zuad",
+          family: "oval",
+          initial: "ضـ",
+          middle: "ـضـ",
+          finalForm: "ـض"),
+
+      // 25. Toay (The Vertical)
+      UrduChar(
+          glyph: "ط",
+          phonetic: "Toay",
+          family: "vertical",
+          initial: "طـ",
+          middle: "ـطـ",
+          finalForm: "ـط"),
+
+      // 26. Zoay (The Vertical with a Dot)
+      UrduChar(
+          glyph: "ظ",
+          phonetic: "Zoay",
+          family: "vertical",
+          initial: "ظـ",
+          middle: "ـظـ",
+          finalForm: "ـظ"),
+
+      // 27. Ain (The C-Curve)
+      UrduChar(
+          glyph: "ع",
+          phonetic: "Ain",
+          family: "ccurve",
+          initial: "عـ",
+          middle: "ـعـ",
+          finalForm: "ـع"),
+
+      // 28. Ghain (The C-Curve with a Dot)
+      UrduChar(
+          glyph: "غ",
+          phonetic: "Ghain",
+          family: "ccurve",
+          initial: "غـ",
+          middle: "ـغـ",
+          finalForm: "ـغ"),
+
+      // 29. Fe (The Round)
+      UrduChar(
+          glyph: "ف",
+          phonetic: "Fe",
+          family: "round",
+          initial: "فـ",
+          middle: "ـفـ",
+          finalForm: "ـف"),
+
+      // 30. Qaaf (The Round with a Dot)
+      UrduChar(
+          glyph: "ق",
+          phonetic: "Qaaf",
+          family: "round",
+          initial: "قـ",
+          middle: "ـقـ",
+          finalForm: "ـق"),
+
+      // 31. Kaaf (The Stick)
+      UrduChar(
+          glyph: "ک",
+          phonetic: "Kaaf",
+          family: "stick",
+          initial: "کـ",
+          middle: "ـکـ",
+          finalForm: "ـک"),
+
+      // 32. Gaaf (The Stick with a Dot)
+      UrduChar(
+          glyph: "گ",
+          phonetic: "Gaaf",
+          isDelta: true,
+          family: "stick",
+          initial: "گـ",
+          middle: "ـگـ",
+          finalForm: "ـگ"),
+
+      // 33. Lām (The Stick with a Hook)
+      UrduChar(
+          glyph: "ل",
+          phonetic: "Laam",
+          family: "hooked_stick",
+          initial: "لـ",
+          middle: "ـلـ",
+          finalForm: "ـل"),
+
+      // 34. Meem (The Loop)
+      UrduChar(
+          glyph: "م",
+          phonetic: "Meem",
+          family: "loop",
+          initial: "مـ",
+          middle: "ـمـ",
+          finalForm: "ـم"),
+
+      // 35. Nūn (The Vessel)
+      UrduChar(
+          glyph: "ن",
+          phonetic: "Noon",
+          family: "vessel",
+          initial: "نـ",
+          middle: "ـنـ",
+          finalForm: "ـن"),
+
+      // 36. Nūn Ghunna (Nasalization - No Dot)
+      UrduChar(
+          glyph: "ں",
+          phonetic: "Noon Ghunna",
+          isDelta: true,
+          family: "vessel",
+          initial: "ں",
+          middle: "ـں",
+          finalForm: "ـں"),
+
+      // 37. Vāo (The Curve)
+      UrduChar(
+          glyph: "و",
+          phonetic: "Wao",
+          family: "slide",
+          initial: "و",
+          middle: "ـو",
+          finalForm: "ـو"),
+
+      // 38. Choti Ye (The "ee" sound)
+      UrduChar(
+          glyph: "ی",
+          phonetic: "Choti Ye",
+          family: "curve",
+          initial: "یـ",
+          middle: "ـیـ",
+          finalForm: "ـی"),
+
+      // 39. Bari Ye (The "ay" sound)
+      UrduChar(
+          glyph: "ے",
+          phonetic: "Bari Ye",
+          isDelta: true,
+          family: "curve",
+          initial: "ے",
+          middle: "ـے",
+          finalForm: "ـے"),
+
+      // Note: Added connectors (ـ) to the Stick family initial/middle
+      // as they are connectors in Urdu, unlike Dal or Re.
+    ];
+  }
+
+  static List<UrduChar> get masterList => getAllChars();
+}
