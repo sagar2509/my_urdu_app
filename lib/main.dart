@@ -4,7 +4,50 @@ import 'widgets/char_card.dart';
 import 'chapters/chapters_data.dart';
 import 'core/constants.dart';
 
-void main() => runApp(const MaterialApp(home: UrduLogicApp()));
+void main() => runApp(const UrduCoreApp());
+
+class UrduCoreApp extends StatelessWidget {
+  const UrduCoreApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: AppConstants.appTitle,
+      debugShowCheckedModeBanner: false,
+      // --- CENTRALIZED COLOR & FONT SYSTEM ---
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: 'AppSans', // Your English font (Inter/Poppins)
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(fontWeight: FontWeight.w800), // Extra Bold
+          bodyMedium: TextStyle(fontWeight: FontWeight.w400), // Regular
+          labelSmall: TextStyle(fontWeight: FontWeight.w300), // Light
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF9669B6),
+          primary: const Color(0xFF9669B6), // Amethyst Purple
+          secondary: const Color(0xFFE74C3C), // Soft Crimson
+          surface: Colors.white,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFFDFEFE),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF9669B6),
+          foregroundColor: Colors.white,
+          elevation: 0,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF9669B6),
+            foregroundColor: Colors.white,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+      ),
+      home: const UrduLogicApp(),
+    );
+  }
+}
 
 class UrduLogicApp extends StatefulWidget {
   const UrduLogicApp({super.key});
@@ -15,23 +58,22 @@ class UrduLogicApp extends StatefulWidget {
 
 class _UrduLogicAppState extends State<UrduLogicApp> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController _searchController = TextEditingController();
 
-  List<UrduChar> currentChapterList = ChapterData.getMasterList();
+  List<UrduChar> currentChapterList = [];
   List<UrduChar> filteredChars = [];
-  String currentTitle = AppConstants.masterList;
+  String currentTitle = AppConstants.home;
   bool showOnlyDeltas = false;
   String searchQuery = "";
+  bool _isSearching = false;
 
   @override
   void initState() {
     super.initState();
-    currentTitle = AppConstants.home; // Start on the Home Dashboard
-    currentChapterList =
-        []; // Start with an empty list until a chapter is selected
-    filteredChars = []; // Initialize with everything
-    showOnlyDeltas = false; // Default to showing all characters
-    _searchController.clear(); // Ensure search is clear on startup
-    searchQuery = ""; // Clear search query on startup
+    currentChapterList = [];
+    filteredChars = [];
+    showOnlyDeltas = false;
+    searchQuery = "";
   }
 
   void _runFilter() {
@@ -49,46 +91,53 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
     setState(() {
       currentChapterList = newList;
       currentTitle = newTitle;
-      filteredChars =
-          newList; // Reset filter to show all chars in the new chapter
-      showOnlyDeltas = false; // Reset delta filter on chapter change
+      filteredChars = newList;
+      showOnlyDeltas = false;
+      _isSearching = false; // Close search when switching chapters
       _searchController.clear();
       searchQuery = "";
       _runFilter();
     });
-    // Only close drawer if it is actually open.
     if (_scaffoldKey.currentState?.isDrawerOpen == true) {
       _scaffoldKey.currentState?.closeDrawer();
     }
   }
 
-  bool _isSearching = false; // Track if we are in "Search Mode"
-  final TextEditingController _searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       key: _scaffoldKey,
-      // --- 1. The Top Navigation Bar ---
-      appBar: AppBar(
-        title: _isSearching
-            ? TextField(
-                controller: _searchController,
-                autofocus: true,
-                decoration: const InputDecoration(
-                  hintText: "Search phonetics...",
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(color: Colors.white70),
-                ),
-                style: const TextStyle(color: Colors.white),
-                onChanged: (value) {
-                  searchQuery = value;
-                  _runFilter();
-                },
-              )
-            : const Text(AppConstants.appTitle),
-        actions: [
-          // Toggle Search Icon
+      appBar: _buildAppBar(theme),
+      drawer: _buildDrawer(theme),
+      body: _buildBody(theme),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar(ThemeData theme) {
+    return AppBar(
+      title: _isSearching
+          ? TextField(
+              controller: _searchController,
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: "Search phonetics...",
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                    color: theme.colorScheme.onPrimary.withOpacity(0.7)),
+              ),
+              style: TextStyle(color: theme.colorScheme.onPrimary),
+              onChanged: (value) {
+                searchQuery = value;
+                _runFilter();
+              },
+            )
+          : Text(currentTitle == AppConstants.home
+              ? AppConstants.appTitle
+              : currentTitle),
+      actions: [
+        if (currentTitle != AppConstants.home)
           IconButton(
             icon: Icon(_isSearching ? Icons.close : Icons.search),
             onPressed: () {
@@ -102,98 +151,106 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
               });
             },
           ),
-        ],
-      ),
+      ],
+    );
+  }
 
-      // --- 2. The Sidebar Navigation (Chapters)
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(child: Text(AppConstants.menu)),
-            _buildChapterTile(AppConstants.home, Icons.home, () {
-              _switchChapter([], AppConstants.home);
-            }),
-            const Divider(),
-            _buildChapterTile(AppConstants.basics, Icons.architecture, () {
-              _switchChapter(ChapterData.getBasics(), AppConstants.basics);
-            }),
-            _buildChapterTile(AppConstants.advanced, Icons.new_releases, () {
-              _switchChapter(ChapterData.getAdvanced(), AppConstants.advanced);
-            }),
-            _buildChapterTile(AppConstants.urduSpecials, Icons.star, () {
-              _switchChapter(
-                  ChapterData.getUrduSpecials(), AppConstants.urduSpecials);
-            }),
-            _buildChapterTile(AppConstants.masterList, Icons.check, () {
-              _switchChapter(
-                  ChapterData.getMasterList(), AppConstants.masterList);
-            }),
-          ],
-        ),
-      ),
-
-      // --- 3. The Main Content ---
-      body: Column(
+  Widget _buildDrawer(ThemeData theme) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          // 1. Check for Home Page first
-          if (currentTitle == AppConstants.home)
-            Expanded(child: _buildHomeDashboard())
-
-          // 2. Otherwise, render the Chapter View (Filter + Grid)
-          else ...[
-            // Only show the FilterChip for the Master List
-            if (currentTitle == AppConstants.masterList)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FilterChip(
-                  label: const Text("Urdu-Only"),
-                  selected: showOnlyDeltas,
-                  onSelected: (val) {
-                    setState(() {
-                      showOnlyDeltas = val;
-                      _runFilter();
-                    });
-                  },
-                ),
-              ),
-
-            // Use LayoutBuilder for the Responsive Grid
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  // Calculate columns based on target width (120px)
-                  int crossAxisCount = (constraints.maxWidth / 120).floor();
-                  if (crossAxisCount < 2) crossAxisCount = 2;
-                  if (crossAxisCount > 8) crossAxisCount = 8;
-
-                  return Directionality(
-                    // LTR for Numbers, RTL for everything else
-                    textDirection: currentTitle == AppConstants.urduNumbers
-                        ? TextDirection.ltr
-                        : TextDirection.rtl,
-                    child: GridView.builder(
-                      padding: const EdgeInsets.all(16),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 0.85,
-                      ),
-                      itemCount: filteredChars.length,
-                      itemBuilder: (context, index) =>
-                          CharCard(char: filteredChars[index]),
-                    ),
-                  );
-                },
+          DrawerHeader(
+            decoration: BoxDecoration(color: theme.primaryColor),
+            child: Center(
+              child: Text(
+                AppConstants.menu,
+                style:
+                    TextStyle(color: theme.colorScheme.onPrimary, fontSize: 24),
               ),
             ),
-          ],
+          ),
+          _buildChapterTile(AppConstants.home, Icons.home, () {
+            _switchChapter([], AppConstants.home);
+          }),
+          const Divider(),
+          _buildChapterTile(AppConstants.basics, Icons.architecture, () {
+            _switchChapter(ChapterData.getBasics(), AppConstants.basics);
+          }),
+          _buildChapterTile(AppConstants.advanced, Icons.auto_awesome, () {
+            _switchChapter(ChapterData.getAdvanced(), AppConstants.advanced);
+          }),
+          _buildChapterTile("Urdu Numbers", Icons.numbers, () {
+            _switchChapter(ChapterData.getUrduNumbers().cast<UrduChar>(),
+                AppConstants.urduNumbers);
+          }),
+          _buildChapterTile(AppConstants.masterList, Icons.format_list_bulleted,
+              () {
+            _switchChapter(
+                ChapterData.getMasterList(), AppConstants.masterList);
+          }),
         ],
       ),
     );
   }
 
-  // Helper for Sidebar Tiles
+  Widget _buildBody(ThemeData theme) {
+    return Column(
+      children: [
+        if (currentTitle == AppConstants.home)
+          Expanded(child: _buildHomeDashboard())
+        else ...[
+          if (currentTitle == AppConstants.masterList) _buildFilterSection(),
+          Expanded(child: _buildResponsiveGrid()),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildFilterSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: FilterChip(
+        label: const Text("Urdu Alphabets Only"),
+        selected: showOnlyDeltas,
+        onSelected: (val) {
+          setState(() {
+            showOnlyDeltas = val;
+            _runFilter();
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildResponsiveGrid() {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        int crossAxisCount = (constraints.maxWidth / 120).floor();
+        if (crossAxisCount < 2) crossAxisCount = 2;
+        if (crossAxisCount > 8) crossAxisCount = 8;
+
+        return Directionality(
+          textDirection: currentTitle == AppConstants.urduNumbers
+              ? TextDirection.ltr
+              : TextDirection.rtl,
+          child: GridView.builder(
+            padding: const EdgeInsets.all(16),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 0.85,
+            ),
+            itemCount: filteredChars.length,
+            itemBuilder: (context, index) =>
+                CharCard(char: filteredChars[index]),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildChapterTile(String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       leading: Icon(icon),
@@ -202,32 +259,29 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
     );
   }
 
-  // --- Bonus: A Home Dashboard (could be triggered from a "Home" button in the drawer) ---
   Widget _buildHomeDashboard() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.menu_book_outlined, size: 80, color: Colors.blue),
+          Icon(Icons.auto_stories,
+              size: 80, color: Theme.of(context).primaryColor),
           const SizedBox(height: 20),
           const Text(
             AppConstants.appTitle,
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             child: Text(
               "Learn Urdu by understanding the core 'engines' and 'logic' behind the script.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(fontSize: 16, color: Colors.blueGrey),
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              // Trigger the "Basics" chapter from the home button
-              final basicsData = ChapterData.getBasics();
-              _switchChapter(basicsData, AppConstants.basics);
-            },
+            onPressed: () =>
+                _switchChapter(ChapterData.getBasics(), AppConstants.basics),
             child: const Text("Begin with Basics"),
           ),
         ],

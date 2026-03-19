@@ -50,6 +50,8 @@ class UrduChar {
         return Colors.grey.shade50;
       case 'curve':
         return Colors.amber.shade50;
+      case 'number':
+        return Colors.blueGrey.shade50;
       default:
         return Colors.grey.shade100;
     }

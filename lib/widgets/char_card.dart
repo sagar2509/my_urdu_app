@@ -29,12 +29,13 @@ class CharCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Inside widgets/char_card.dart
           Text(
             char.glyph,
             style: const TextStyle(
-              fontSize: 56, // Large for clarity
-              fontFamily: 'Nastaliq',
-              height: 1.2, // Adjust for Nastaliq's vertical cascade
+              fontFamily: 'UrduNastaliq', // Match the name in pubspec.yaml
+              fontSize: 48,
+              height: 1.5, // Important for Nastaliq height
             ),
           ),
           const SizedBox(height: 4),

@@ -371,4 +371,17 @@ class CharRegistry {
   }
 
   static List<UrduChar> get masterList => getAllChars();
+
+  static List<UrduChar> get urduNumbers => [
+        UrduChar(glyph: "۰", phonetic: "Zero", family: "number"),
+        UrduChar(glyph: "۱", phonetic: "One", family: "number"),
+        UrduChar(glyph: "۲", phonetic: "Two", family: "number"),
+        UrduChar(glyph: "۳", phonetic: "Three", family: "number"),
+        UrduChar(glyph: "۴", phonetic: "Four", family: "number"),
+        UrduChar(glyph: "۵", phonetic: "Five", family: "number"),
+        UrduChar(glyph: "۶", phonetic: "Six", family: "number"),
+        UrduChar(glyph: "۷", phonetic: "Seven", family: "number"),
+        UrduChar(glyph: "۸", phonetic: "Eight", family: "number"),
+        UrduChar(glyph: "۹", phonetic: "Nine", family: "number"),
+      ];
 }

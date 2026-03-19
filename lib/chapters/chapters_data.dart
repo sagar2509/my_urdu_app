@@ -24,4 +24,8 @@ class ChapterData {
   static List<UrduChar> getUrduSpecials() {
     return CharRegistry.masterList.where((c) => c.isDelta).toList();
   }
+
+  static List<UrduChar> getUrduNumbers() {
+    return CharRegistry.urduNumbers;
+  }
 }
