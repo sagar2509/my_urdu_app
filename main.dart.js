@@ -80190,8 +80190,8 @@ if(q.z){s=a.ax.c
 r=s.a
 r=A.ao5(p,B.l3,p,p,p,p,p,p,!0,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,A.fS(p,p,A.M(B.c.ai(178.5),r>>>16&255,r>>>8&255,r&255),p,p,p,p,p,p,p,p,p,p,p,p,p,p,!0,p,p,p,p,p,p,p,p),"Search phonetics...",p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p)
 s=A.fS(p,p,s,p,p,p,p,p,p,p,p,p,p,p,p,p,p,!0,p,p,p,p,p,p,p,p)
-s=new A.yA(q.e,r,B.Mt,s,!0,B.LK,B.LL,new A.agd(q),!0,p)}else{s=q.w
-s=A.e6(s==="Home"?"Urdu Core":s,p,p,p,p,p,p)}r=A.b([],t.F)
+s=new A.yA(q.e,r,B.Mt,s,!0,B.LK,B.LL,new A.agd(q),!0,p)}else s=A.e6(q.w,p,p,p,p,p,p)
+r=A.b([],t.F)
 if(q.w!=="Home")r.push(A.ajH(p,A.kH(q.z?B.Dz:B.mZ,p,p,p),new A.age(q),p,p))
 return new A.tS(s,r,new A.OB(p,p,1/0,56),p)},
 Z1(a){var s=this,r=null,q=A.b([new A.Fd(new A.dm(a.fr,r,r,r,r,r,B.aP),A.iT(A.e6("Menu",r,r,r,A.fS(r,r,a.ax.c,r,r,r,r,r,r,r,r,24,r,r,r,r,r,!0,r,r,r,r,r,r,r,r),r,r),r,r),r),A.Gr(A.kH(B.DB,r,r,r),new A.agf(s),A.e6("Home",r,r,r,r,r,r)),B.CD,A.Gr(A.kH(B.Dv,r,r,r),new A.agg(s),A.e6("Basics",r,r,r,r,r,r)),A.Gr(A.kH(B.Dw,r,r,r),new A.agh(s),A.e6("Advanced",r,r,r,r,r,r)),A.Gr(A.kH(B.DD,r,r,r),new A.agi(s),A.e6("Urdu Numbers",r,r,r,r,r,r)),A.Gr(A.kH(B.DA,r,r,r),new A.agj(s),A.e6("Complete Alphabet",r,r,r,r,r,r))],t.F),p=A.aB([null,0],t.LO,t.S)
