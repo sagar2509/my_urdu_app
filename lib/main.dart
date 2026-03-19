@@ -133,9 +133,7 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
                 _runFilter();
               },
             )
-          : Text(currentTitle == AppConstants.home
-              ? AppConstants.appTitle
-              : currentTitle),
+          : Text(currentTitle),
       actions: [
         if (currentTitle != AppConstants.home)
           IconButton(
