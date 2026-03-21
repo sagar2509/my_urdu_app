@@ -172,26 +172,7 @@ class CharRegistry {
           middle: "ـژ",
           finalForm: "ـژ"),
 
-      // 19. Kaaf (The Stick)
-      UrduChar(
-          glyph: "ک",
-          phonetic: "Kaaf",
-          family: "stick",
-          initial: "ک",
-          middle: "ـک",
-          finalForm: "ـک"),
-
-      // 20. Gaaf (The Stick with a Dot)
-      UrduChar(
-          glyph: "گ",
-          phonetic: "Gaaf",
-          isDelta: true,
-          family: "stick",
-          initial: "گ",
-          middle: "ـگ",
-          finalForm: "ـگ"),
-
-      // 21. Seen (The Loop)
+      // 19. Seen (The Loop)
       UrduChar(
           glyph: "س",
           phonetic: "Seen",
@@ -200,7 +181,7 @@ class CharRegistry {
           middle: "ـسـ",
           finalForm: "ـس"),
 
-      // 22. Sheen (The Loop with a Dot)
+      // 20. Sheen (The Loop with a Dot)
       UrduChar(
           glyph: "ش",
           phonetic: "Sheen",
@@ -209,7 +190,7 @@ class CharRegistry {
           middle: "ـشـ",
           finalForm: "ـش"),
 
-      // 23. Suad (The Oval)
+      // 21. Suad (The Oval)
       UrduChar(
           glyph: "ص",
           phonetic: "Suad",
@@ -218,7 +199,7 @@ class CharRegistry {
           middle: "ـصـ",
           finalForm: "ـص"),
 
-      // 24. Zuad (The Oval with a Dot)
+      // 22. Zuad (The Oval with a Dot)
       UrduChar(
           glyph: "ض",
           phonetic: "Zuad",
@@ -227,7 +208,7 @@ class CharRegistry {
           middle: "ـضـ",
           finalForm: "ـض"),
 
-      // 25. Toay (The Vertical)
+      // 23. Toay (The Vertical)
       UrduChar(
           glyph: "ط",
           phonetic: "Toay",
@@ -236,7 +217,7 @@ class CharRegistry {
           middle: "ـطـ",
           finalForm: "ـط"),
 
-      // 26. Zoay (The Vertical with a Dot)
+      // 24. Zoay (The Vertical with a Dot)
       UrduChar(
           glyph: "ظ",
           phonetic: "Zoay",
@@ -245,7 +226,7 @@ class CharRegistry {
           middle: "ـظـ",
           finalForm: "ـظ"),
 
-      // 27. Ain (The C-Curve)
+      // 25. Ain (The C-Curve)
       UrduChar(
           glyph: "ع",
           phonetic: "Ain",
@@ -254,7 +235,7 @@ class CharRegistry {
           middle: "ـعـ",
           finalForm: "ـع"),
 
-      // 28. Ghain (The C-Curve with a Dot)
+      // 26. Ghain (The C-Curve with a Dot)
       UrduChar(
           glyph: "غ",
           phonetic: "Ghain",
@@ -263,7 +244,7 @@ class CharRegistry {
           middle: "ـغـ",
           finalForm: "ـغ"),
 
-      // 29. Fe (The Round)
+      // 27. Fe (The Round)
       UrduChar(
           glyph: "ف",
           phonetic: "Fe",
@@ -272,7 +253,7 @@ class CharRegistry {
           middle: "ـفـ",
           finalForm: "ـف"),
 
-      // 30. Qaaf (The Round with a Dot)
+      // 28. Qaaf (The Round with a Dot)
       UrduChar(
           glyph: "ق",
           phonetic: "Qaaf",
@@ -281,7 +262,7 @@ class CharRegistry {
           middle: "ـقـ",
           finalForm: "ـق"),
 
-      // 31. Kaaf (The Stick)
+      // 29. Kaaf (The Stick)
       UrduChar(
           glyph: "ک",
           phonetic: "Kaaf",
@@ -290,7 +271,7 @@ class CharRegistry {
           middle: "ـکـ",
           finalForm: "ـک"),
 
-      // 32. Gaaf (The Stick with a Dot)
+      // 30. Gaaf (The Stick with a Dot)
       UrduChar(
           glyph: "گ",
           phonetic: "Gaaf",
@@ -300,7 +281,7 @@ class CharRegistry {
           middle: "ـگـ",
           finalForm: "ـگ"),
 
-      // 33. Lām (The Stick with a Hook)
+      // 31. Lām (The Stick with a Hook)
       UrduChar(
           glyph: "ل",
           phonetic: "Laam",
@@ -309,7 +290,7 @@ class CharRegistry {
           middle: "ـلـ",
           finalForm: "ـل"),
 
-      // 34. Meem (The Loop)
+      // 32. Meem (The Loop)
       UrduChar(
           glyph: "م",
           phonetic: "Meem",
@@ -318,7 +299,7 @@ class CharRegistry {
           middle: "ـمـ",
           finalForm: "ـم"),
 
-      // 35. Nūn (The Vessel)
+      // 33. Nūn (The Vessel)
       UrduChar(
           glyph: "ن",
           phonetic: "Noon",
@@ -327,7 +308,7 @@ class CharRegistry {
           middle: "ـنـ",
           finalForm: "ـن"),
 
-      // 36. Nūn Ghunna (Nasalization - No Dot)
+      // 34. Nūn Ghunna (Nasalization - No Dot)
       UrduChar(
           glyph: "ں",
           phonetic: "Noon Ghunna",
@@ -337,7 +318,7 @@ class CharRegistry {
           middle: "ـں",
           finalForm: "ـں"),
 
-      // 37. Vāo (The Curve)
+      // 35. Vāo (The Curve)
       UrduChar(
           glyph: "و",
           phonetic: "Wao",
@@ -346,7 +327,7 @@ class CharRegistry {
           middle: "ـو",
           finalForm: "ـو"),
 
-      // 38. Choti Ye (The "ee" sound)
+      // 36. Choti Ye (The "ee" sound)
       UrduChar(
           glyph: "ی",
           phonetic: "Choti Ye",
@@ -355,7 +336,7 @@ class CharRegistry {
           middle: "ـیـ",
           finalForm: "ـی"),
 
-      // 39. Bari Ye (The "ay" sound)
+      // 37. Bari Ye (The "ay" sound)
       UrduChar(
           glyph: "ے",
           phonetic: "Bari Ye",
@@ -365,8 +346,24 @@ class CharRegistry {
           middle: "ـے",
           finalForm: "ـے"),
 
-      // Note: Added connectors (ـ) to the Stick family initial/middle
-      // as they are connectors in Urdu, unlike Dal or Re.
+      // 38. Choti He (The Round He)
+      UrduChar(
+          glyph: "ہ",
+          phonetic: "Choti He",
+          family: "hook",
+          initial: "ہـ",
+          middle: "ـہـ",
+          finalForm: "ـہ"),
+
+      // 39. Do-Chashmi He (The Butterfly/Aspiration)
+      UrduChar(
+          glyph: "ھ",
+          phonetic: "Do-Chashmi He",
+          isDelta: true,
+          family: "hook",
+          initial: "ھـ",
+          middle: "ـھـ",
+          finalForm: "ـھ"),
     ];
   }
 

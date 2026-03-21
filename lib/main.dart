@@ -172,21 +172,29 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
             _switchChapter([], AppConstants.home);
           }),
           const Divider(),
-          _buildChapterTile(AppConstants.basics, Icons.architecture, () {
-            _switchChapter(ChapterData.getBasics(), AppConstants.basics);
-          }),
-          _buildChapterTile(AppConstants.advanced, Icons.auto_awesome, () {
-            _switchChapter(ChapterData.getAdvanced(), AppConstants.advanced);
-          }),
-          _buildChapterTile("Urdu Numbers", Icons.numbers, () {
-            _switchChapter(ChapterData.getUrduNumbers().cast<UrduChar>(),
-                AppConstants.urduNumbers);
-          }),
-          _buildChapterTile(AppConstants.masterList, Icons.format_list_bulleted,
-              () {
-            _switchChapter(
-                ChapterData.getMasterList(), AppConstants.masterList);
-          }),
+          _buildSectionHeader("Learning Modules", theme),
+          ExpansionTile(
+            leading: const Icon(Icons.book),
+            title: const Text("Module 1: Basics"),
+            children: [
+              _buildChapterTile(AppConstants.basics, Icons.architecture, () {
+                _switchChapter(ChapterData.getBasics(), AppConstants.basics);
+              }),
+              _buildChapterTile(AppConstants.advanced, Icons.auto_awesome, () {
+                _switchChapter(
+                    ChapterData.getAdvanced(), AppConstants.advanced);
+              }),
+              _buildChapterTile("Urdu Numbers", Icons.numbers, () {
+                _switchChapter(ChapterData.getUrduNumbers().cast<UrduChar>(),
+                    AppConstants.urduNumbers);
+              }),
+              _buildChapterTile(
+                  AppConstants.masterList, Icons.format_list_bulleted, () {
+                _switchChapter(
+                    ChapterData.getMasterList(), AppConstants.masterList);
+              }),
+            ],
+          ),
         ],
       ),
     );
@@ -246,6 +254,20 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildSectionHeader(String title, ThemeData theme) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8),
+      child: Text(
+        title.toUpperCase(),
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold, // Your Amethyst Purple
+          letterSpacing: 1.2,
+        ),
+      ),
     );
   }
 
