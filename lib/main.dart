@@ -125,7 +125,7 @@ class _UrduLogicAppState extends State<UrduLogicApp> {
                 hintText: "Search phonetics...",
                 border: InputBorder.none,
                 hintStyle: TextStyle(
-                    color: theme.colorScheme.onPrimary.withOpacity(0.7)),
+                    color: theme.colorScheme.onPrimary.withValues(alpha: 0.7)),
               ),
               style: TextStyle(color: theme.colorScheme.onPrimary),
               onChanged: (value) {
