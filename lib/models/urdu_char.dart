@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A single Urdu alphabet letter or number glyph and its learning metadata.
 class UrduChar {
   final String glyph;
   final String phonetic;
@@ -9,7 +10,7 @@ class UrduChar {
   final String? middle;
   final String? finalForm;
 
-  UrduChar({
+  const UrduChar({
     required this.glyph,
     required this.phonetic,
     this.isDelta = false,
@@ -19,7 +20,13 @@ class UrduChar {
     this.finalForm,
   });
 
-  // Helper logic to get a color based on family
+  /// Whether this glyph has distinct positional (initial/middle/final) forms.
+  /// Numbers and other non-letter glyphs don't.
+  bool get hasPositionalForms => initial != null || middle != null || finalForm != null;
+
+  /// A stable identity for progress tracking and quiz lookups.
+  String get id => glyph;
+
   Color get familyColor {
     switch (family) {
       case 'alif':

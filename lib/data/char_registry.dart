@@ -1,6 +1,12 @@
 import '../models/urdu_char.dart';
 
 class CharRegistry {
+  /// The 11 base letter shapes every other letter is derived from by adding
+  /// dots/marks. Single source of truth — used to split Basics vs Advanced.
+  static const List<String> baseShapeGlyphs = [
+    "ا", "ب", "ج", "د", "ر", "س", "ص", "ط", "ع", "ف", "ک",
+  ];
+
   static List<UrduChar> getAllChars() {
     return [
       // 1. Alif (The Vertical Stick)

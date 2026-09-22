@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/urdu_char.dart';
+import '../state/progress_provider.dart';
 import 'char_detail_dialog.dart';
 
 class CharCard extends StatelessWidget {
@@ -9,12 +11,13 @@ class CharCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isViewed = context.watch<ProgressProvider>().isViewed(char.id);
+
     return GestureDetector(
       onTap: () {
-        // Show the detail dialog when tapped
         showDialog(
           context: context,
-          builder: (context) => CharDetailDialog(char: char),
+          builder: (_) => CharDetailDialog(char: char),
         );
       },
       child: Container(
@@ -35,27 +38,36 @@ class CharCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            // Inside widgets/char_card.dart
-            Text(
-              char.glyph,
-              style: const TextStyle(
-                fontFamily: 'UrduNastaliq', // Match the name in pubspec.yaml
-                fontSize: 48,
-                height: 1.5, // Important for Nastaliq height
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  char.glyph,
+                  style: const TextStyle(
+                    fontFamily: 'Nastaliq', // matches pubspec.yaml font family
+                    fontSize: 48,
+                    height: 1.5, // Important for Nastaliq height
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  char.phonetic,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(
-              char.phonetic,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-                color: Colors.black87,
+            if (isViewed)
+              const Positioned(
+                top: 4,
+                right: 4,
+                child: Icon(Icons.check_circle, size: 16, color: Colors.green),
               ),
-            ),
           ],
         ),
       ),
