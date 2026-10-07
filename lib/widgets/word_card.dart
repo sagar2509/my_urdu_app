@@ -14,7 +14,8 @@ class WordCard extends StatelessWidget {
     final isViewed = context.watch<ProgressProvider>().isViewed(word.id);
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      color: word.familyColor,
       child: ListTile(
         onTap: () => showDialog(
           context: context,
@@ -27,7 +28,10 @@ class WordCard extends StatelessWidget {
         title: Text(word.english),
         subtitle: Text(word.hindi),
         trailing: isViewed
-            ? const Icon(Icons.check_circle, size: 20, color: Colors.green)
+            ? Semantics(
+                label: 'Already viewed',
+                child: const Icon(Icons.check_circle, size: 20, color: Colors.green),
+              )
             : null,
       ),
     );

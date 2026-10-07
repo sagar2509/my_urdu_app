@@ -59,18 +59,35 @@ class _CharDetailDialogState extends State<CharDetailDialog> {
                 ),
               ],
             ),
+            Text(
+              char.hindi,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade700,
+              ),
+            ),
 
             // 2. The Positional Logic Row (letters only — numbers have no forms)
             if (char.hasPositionalForms) ...[
               const Divider(height: 32),
-              const Text("Positional Forms", style: TextStyle(color: Colors.grey)),
+              const Text(
+                "How it connects in a word",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                "Many Urdu letters change shape to join with the letters next to them.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade700),
+              ),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildFormColumn("Initial", char.initial ?? char.glyph),
+                  _buildFormColumn("Start", char.initial ?? char.glyph),
                   _buildFormColumn("Middle", char.middle ?? char.glyph),
-                  _buildFormColumn("Final", char.finalForm ?? char.glyph),
+                  _buildFormColumn("End", char.finalForm ?? char.glyph),
                 ],
               ),
             ],
@@ -89,7 +106,7 @@ class _CharDetailDialogState extends State<CharDetailDialog> {
           style: const TextStyle(fontFamily: 'Nastaliq', fontSize: 32),
         ),
         const SizedBox(height: 4),
-        Text(label, style: const TextStyle(fontSize: 10, color: Colors.grey)),
+        Text(label, style: TextStyle(fontSize: 10, color: Colors.grey.shade700)),
       ],
     );
   }

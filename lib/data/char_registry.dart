@@ -1,18 +1,13 @@
 import '../models/urdu_char.dart';
 
 class CharRegistry {
-  /// The 11 base letter shapes every other letter is derived from by adding
-  /// dots/marks. Single source of truth — used to split Basics vs Advanced.
-  static const List<String> baseShapeGlyphs = [
-    "ا", "ب", "ج", "د", "ر", "س", "ص", "ط", "ع", "ف", "ک",
-  ];
-
   static List<UrduChar> getAllChars() {
     return [
       // 1. Alif (The Vertical Stick)
       UrduChar(
           glyph: "ا",
           phonetic: "Alif",
+          hindi: "अलिफ़",
           family: "alif",
           initial: "ا",
           middle: "ـا",
@@ -22,6 +17,7 @@ class CharRegistry {
       UrduChar(
           glyph: "آ",
           phonetic: "Alif Madda",
+          hindi: "अलिफ़ मद्दा",
           isDelta: true,
           family: "alif",
           initial: "آ",
@@ -32,6 +28,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ب",
           phonetic: "Be",
+          hindi: "बे",
           family: "boat",
           initial: "بـ",
           middle: "ـبـ",
@@ -41,6 +38,7 @@ class CharRegistry {
       UrduChar(
           glyph: "پ",
           phonetic: "Pe",
+          hindi: "पे",
           isDelta: true,
           family: "boat",
           initial: "پـ",
@@ -51,6 +49,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ت",
           phonetic: "Te",
+          hindi: "ते",
           family: "boat",
           initial: "تـ",
           middle: "ـتـ",
@@ -60,6 +59,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ٹ",
           phonetic: "Tte",
+          hindi: "टे",
           isDelta: true,
           family: "boat",
           initial: "ٹـ",
@@ -70,6 +70,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ث",
           phonetic: "Se",
+          hindi: "से",
           family: "boat",
           initial: "ثـ",
           middle: "ـثـ",
@@ -79,6 +80,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ج",
           phonetic: "Jeem",
+          hindi: "जीम",
           family: "hook",
           initial: "جـ",
           middle: "ـجـ",
@@ -88,6 +90,7 @@ class CharRegistry {
       UrduChar(
           glyph: "چ",
           phonetic: "Che",
+          hindi: "चे",
           isDelta: true,
           family: "hook",
           initial: "چـ",
@@ -98,6 +101,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ح",
           phonetic: "Barri He",
+          hindi: "बड़ी हे",
           family: "hook",
           initial: "حـ",
           middle: "ـحـ",
@@ -107,6 +111,7 @@ class CharRegistry {
       UrduChar(
           glyph: "خ",
           phonetic: "Khe",
+          hindi: "खे",
           family: "hook",
           initial: "خـ",
           middle: "ـخـ",
@@ -116,6 +121,7 @@ class CharRegistry {
       UrduChar(
           glyph: "د",
           phonetic: "Dal",
+          hindi: "दाल",
           family: "angle",
           initial: "د",
           middle: "ـد",
@@ -125,6 +131,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ڈ",
           phonetic: "Ddal",
+          hindi: "डाल",
           isDelta: true,
           family: "angle",
           initial: "ڈ",
@@ -135,6 +142,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ذ",
           phonetic: "Zaal",
+          hindi: "ज़ाल",
           family: "angle",
           initial: "ذ",
           middle: "ـذ",
@@ -144,6 +152,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ر",
           phonetic: "Re",
+          hindi: "रे",
           family: "slide",
           initial: "ر",
           middle: "ـر",
@@ -153,6 +162,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ڑ",
           phonetic: "Rre",
+          hindi: "ड़े",
           isDelta: true,
           family: "slide",
           initial: "ڑ",
@@ -163,6 +173,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ز",
           phonetic: "Ze",
+          hindi: "ज़े",
           family: "slide",
           initial: "ز",
           middle: "ـز",
@@ -172,6 +183,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ژ",
           phonetic: "Zhe",
+          hindi: "झ़े",
           isDelta: true,
           family: "slide",
           initial: "ژ",
@@ -182,6 +194,7 @@ class CharRegistry {
       UrduChar(
           glyph: "س",
           phonetic: "Seen",
+          hindi: "सीन",
           family: "loop",
           initial: "سـ",
           middle: "ـسـ",
@@ -191,6 +204,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ش",
           phonetic: "Sheen",
+          hindi: "शीन",
           family: "loop",
           initial: "شـ",
           middle: "ـشـ",
@@ -200,6 +214,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ص",
           phonetic: "Suad",
+          hindi: "स्वाद",
           family: "oval",
           initial: "صـ",
           middle: "ـصـ",
@@ -209,6 +224,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ض",
           phonetic: "Zuad",
+          hindi: "ज़्वाद",
           family: "oval",
           initial: "ضـ",
           middle: "ـضـ",
@@ -218,6 +234,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ط",
           phonetic: "Toay",
+          hindi: "तोए",
           family: "vertical",
           initial: "طـ",
           middle: "ـطـ",
@@ -227,6 +244,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ظ",
           phonetic: "Zoay",
+          hindi: "ज़ोए",
           family: "vertical",
           initial: "ظـ",
           middle: "ـظـ",
@@ -236,6 +254,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ع",
           phonetic: "Ain",
+          hindi: "ऐन",
           family: "ccurve",
           initial: "عـ",
           middle: "ـعـ",
@@ -245,6 +264,7 @@ class CharRegistry {
       UrduChar(
           glyph: "غ",
           phonetic: "Ghain",
+          hindi: "ग़ैन",
           family: "ccurve",
           initial: "غـ",
           middle: "ـغـ",
@@ -254,6 +274,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ف",
           phonetic: "Fe",
+          hindi: "फ़े",
           family: "round",
           initial: "فـ",
           middle: "ـفـ",
@@ -263,6 +284,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ق",
           phonetic: "Qaaf",
+          hindi: "क़ाफ़",
           family: "round",
           initial: "قـ",
           middle: "ـقـ",
@@ -272,6 +294,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ک",
           phonetic: "Kaaf",
+          hindi: "काफ़",
           family: "stick",
           initial: "کـ",
           middle: "ـکـ",
@@ -281,6 +304,7 @@ class CharRegistry {
       UrduChar(
           glyph: "گ",
           phonetic: "Gaaf",
+          hindi: "गाफ़",
           isDelta: true,
           family: "stick",
           initial: "گـ",
@@ -291,6 +315,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ل",
           phonetic: "Laam",
+          hindi: "लाम",
           family: "hooked_stick",
           initial: "لـ",
           middle: "ـلـ",
@@ -300,6 +325,7 @@ class CharRegistry {
       UrduChar(
           glyph: "م",
           phonetic: "Meem",
+          hindi: "मीम",
           family: "loop",
           initial: "مـ",
           middle: "ـمـ",
@@ -309,6 +335,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ن",
           phonetic: "Noon",
+          hindi: "नून",
           family: "vessel",
           initial: "نـ",
           middle: "ـنـ",
@@ -318,6 +345,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ں",
           phonetic: "Noon Ghunna",
+          hindi: "नून ग़ुन्ना",
           isDelta: true,
           family: "vessel",
           initial: "ں",
@@ -328,6 +356,7 @@ class CharRegistry {
       UrduChar(
           glyph: "و",
           phonetic: "Wao",
+          hindi: "वाओ",
           family: "slide",
           initial: "و",
           middle: "ـو",
@@ -337,6 +366,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ی",
           phonetic: "Choti Ye",
+          hindi: "छोटी ये",
           family: "curve",
           initial: "یـ",
           middle: "ـیـ",
@@ -346,16 +376,25 @@ class CharRegistry {
       UrduChar(
           glyph: "ے",
           phonetic: "Bari Ye",
+          hindi: "बड़ी ये",
           isDelta: true,
           family: "curve",
           initial: "ے",
           middle: "ـے",
           finalForm: "ـے"),
 
-      // 38. Choti He (The Round He)
+      // 38. Hamza (A glottal stop mark, usually standalone or seated on a letter)
+      UrduChar(
+          glyph: "ء",
+          phonetic: "Hamza",
+          hindi: "हम्ज़ा",
+          family: "hamza"),
+
+      // 39. Choti He (The Round He)
       UrduChar(
           glyph: "ہ",
           phonetic: "Choti He",
+          hindi: "छोटी हे",
           family: "hook",
           initial: "ہـ",
           middle: "ـہـ",
@@ -365,6 +404,7 @@ class CharRegistry {
       UrduChar(
           glyph: "ھ",
           phonetic: "Do-Chashmi He",
+          hindi: "दो चश्मी हे",
           isDelta: true,
           family: "hook",
           initial: "ھـ",
@@ -375,16 +415,18 @@ class CharRegistry {
 
   static List<UrduChar> get masterList => getAllChars();
 
+  // Each digit gets a distinct family purely for a varied card color — same
+  // palette the alphabet grid uses, so Numbers doesn't look flat by comparison.
   static List<UrduChar> get urduNumbers => [
-        UrduChar(glyph: "۰", phonetic: "Zero", family: "number"),
-        UrduChar(glyph: "۱", phonetic: "One", family: "number"),
-        UrduChar(glyph: "۲", phonetic: "Two", family: "number"),
-        UrduChar(glyph: "۳", phonetic: "Three", family: "number"),
-        UrduChar(glyph: "۴", phonetic: "Four", family: "number"),
-        UrduChar(glyph: "۵", phonetic: "Five", family: "number"),
-        UrduChar(glyph: "۶", phonetic: "Six", family: "number"),
-        UrduChar(glyph: "۷", phonetic: "Seven", family: "number"),
-        UrduChar(glyph: "۸", phonetic: "Eight", family: "number"),
-        UrduChar(glyph: "۹", phonetic: "Nine", family: "number"),
+        UrduChar(glyph: "۰", phonetic: "Zero", hindi: "शून्य", family: "alif"),
+        UrduChar(glyph: "۱", phonetic: "One", hindi: "एक", family: "boat"),
+        UrduChar(glyph: "۲", phonetic: "Two", hindi: "दो", family: "hook"),
+        UrduChar(glyph: "۳", phonetic: "Three", hindi: "तीन", family: "angle"),
+        UrduChar(glyph: "۴", phonetic: "Four", hindi: "चार", family: "slide"),
+        UrduChar(glyph: "۵", phonetic: "Five", hindi: "पांच", family: "stick"),
+        UrduChar(glyph: "۶", phonetic: "Six", hindi: "छह", family: "loop"),
+        UrduChar(glyph: "۷", phonetic: "Seven", hindi: "सात", family: "oval"),
+        UrduChar(glyph: "۸", phonetic: "Eight", hindi: "आठ", family: "vertical"),
+        UrduChar(glyph: "۹", phonetic: "Nine", hindi: "नौ", family: "ccurve"),
       ];
 }

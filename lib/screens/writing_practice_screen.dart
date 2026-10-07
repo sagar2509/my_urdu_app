@@ -100,33 +100,62 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.lesson.title)),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: _finished ? _buildResult() : _buildQuestion(),
-      ),
+      // SafeArea + a scrollable content area (rather than a fixed Column with
+      // a Spacer) so the layout can't overflow when the on-screen keyboard
+      // shrinks the available height.
+      body: SafeArea(child: _finished ? _buildResult() : _buildQuestionLayout()),
     );
   }
 
   Widget _buildResult() {
     final best = context.watch<ProgressProvider>().bestScoreFor(widget.lesson.id);
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.emoji_events, size: 72, color: Colors.amber),
-          const SizedBox(height: 16),
-          Text('$_score / ${_questions.length} correct',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8),
-          Text('Best score: $best / ${_questions.length}',
-              style: const TextStyle(color: Colors.grey)),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Done'),
-          ),
-        ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24.0),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.emoji_events, size: 72, color: Colors.amber),
+            const SizedBox(height: 16),
+            Text('$_score / ${_questions.length} correct',
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text('Best score: $best / ${_questions.length}',
+                style: TextStyle(color: Colors.grey.shade700)),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Done'),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  /// The question content scrolls on its own; the action button stays
+  /// pinned below it instead of relying on a Spacer to push it down.
+  Widget _buildQuestionLayout() {
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+            child: _buildQuestion(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: ElevatedButton(
+            onPressed: _checked ? _next : _check,
+            child: Text(
+              !_checked
+                  ? 'Check'
+                  : (_index + 1 < _questions.length ? 'Next' : 'Finish'),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -136,14 +165,14 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text('Question ${_index + 1} of ${_questions.length}',
-            textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey)),
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade700)),
         const SizedBox(height: 8),
         Text(
           question.promptLanguage == _PromptLanguage.english
               ? 'Write this word in Urdu:'
               : 'اس لفظ کو اردو میں لکھیں:',
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
+          style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
         ),
         const SizedBox(height: 12),
         Text(
@@ -180,15 +209,6 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
           const SizedBox(height: 16),
           _buildFeedback(question),
         ],
-        const Spacer(),
-        ElevatedButton(
-          onPressed: _checked ? _next : _check,
-          child: Text(
-            !_checked
-                ? 'Check'
-                : (_index + 1 < _questions.length ? 'Next' : 'Finish'),
-          ),
-        ),
       ],
     );
   }

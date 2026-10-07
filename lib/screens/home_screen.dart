@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () => pushLesson(context, firstLesson),
-              child: const Text("Begin with Basics"),
+              child: const Text("Begin with the Alphabet"),
             ),
           ],
         ),

@@ -78,7 +78,7 @@ class _LessonScreenState extends State<LessonScreen> {
               decoration: InputDecoration(
                 hintText: AppConstants.searchHint,
                 border: InputBorder.none,
-                hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
+                hintStyle: const TextStyle(color: Colors.white),
               ),
               style: const TextStyle(color: Colors.white),
               onChanged: (value) => setState(() => _searchQuery = value),
@@ -87,6 +87,7 @@ class _LessonScreenState extends State<LessonScreen> {
       actions: [
         IconButton(
           icon: Icon(_isSearching ? Icons.close : Icons.search),
+          tooltip: _isSearching ? 'Close search' : 'Search',
           onPressed: () {
             setState(() {
               _isSearching = !_isSearching;
@@ -109,7 +110,7 @@ class _LessonScreenState extends State<LessonScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('$viewed / $total explored',
-              style: const TextStyle(fontSize: 12, color: Colors.grey)),
+              style: TextStyle(fontSize: 12, color: Colors.grey.shade700)),
           const SizedBox(height: 4),
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
@@ -133,6 +134,10 @@ class _LessonScreenState extends State<LessonScreen> {
 
   Widget _buildGrid() {
     final chars = _filteredChars;
+    // Leave extra room at the bottom so the floating Quiz button doesn't
+    // sit on top of (and block taps on) the last row of cards.
+    final hasQuizFab = widget.lesson.chars.length >= 4;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         int crossAxisCount = (constraints.maxWidth / 120).floor();
@@ -142,7 +147,12 @@ class _LessonScreenState extends State<LessonScreen> {
         return Directionality(
           textDirection: widget.lesson.direction,
           child: GridView.builder(
-            padding: const EdgeInsets.all(AppConstants.cardPadding),
+            padding: EdgeInsets.fromLTRB(
+              AppConstants.cardPadding,
+              AppConstants.cardPadding,
+              AppConstants.cardPadding,
+              hasQuizFab ? 96 : AppConstants.cardPadding,
+            ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: AppConstants.gridSpacing,

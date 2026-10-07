@@ -98,7 +98,7 @@ class _QuizScreenState extends State<QuizScreen> {
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text('Best score: $best / ${_questions.length}',
-              style: const TextStyle(color: Colors.grey)),
+              style: TextStyle(color: Colors.grey.shade700)),
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -114,7 +114,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Column(
       children: [
         Text('Question ${_index + 1} of ${_questions.length}',
-            style: const TextStyle(color: Colors.grey)),
+            style: TextStyle(color: Colors.grey.shade700)),
         const SizedBox(height: 16),
         Text(
           question.answer.glyph,

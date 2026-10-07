@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/lesson.dart';
-import '../models/urdu_char.dart';
 import 'char_registry.dart';
 import 'word_registry.dart';
 
@@ -9,14 +8,6 @@ import 'word_registry.dart';
 /// To add a new module, append a [Module] here — the drawer and navigation
 /// pick it up automatically, no other changes needed.
 class ModuleRegistry {
-  static List<UrduChar> _basics() => CharRegistry.masterList
-      .where((c) => CharRegistry.baseShapeGlyphs.contains(c.glyph))
-      .toList();
-
-  static List<UrduChar> _advanced() => CharRegistry.masterList
-      .where((c) => !CharRegistry.baseShapeGlyphs.contains(c.glyph))
-      .toList();
-
   static final List<Module> modules = [
     Module(
       id: 'module_1',
@@ -24,16 +15,11 @@ class ModuleRegistry {
       icon: Icons.book,
       lessons: [
         CharLesson(
-          id: 'basics',
-          title: 'Basics',
-          icon: Icons.architecture,
-          charsBuilder: _basics,
-        ),
-        CharLesson(
-          id: 'advanced',
-          title: 'Advanced',
-          icon: Icons.auto_awesome,
-          charsBuilder: _advanced,
+          id: 'alphabet',
+          title: 'Alphabet',
+          icon: Icons.sort_by_alpha,
+          charsBuilder: () => CharRegistry.masterList,
+          showFilters: true,
         ),
         CharLesson(
           id: 'numbers',
@@ -41,13 +27,6 @@ class ModuleRegistry {
           icon: Icons.numbers,
           charsBuilder: () => CharRegistry.urduNumbers,
           direction: TextDirection.ltr,
-        ),
-        CharLesson(
-          id: 'master_list',
-          title: 'Complete Alphabet',
-          icon: Icons.format_list_bulleted,
-          charsBuilder: () => CharRegistry.masterList,
-          showFilters: true,
         ),
       ],
     ),

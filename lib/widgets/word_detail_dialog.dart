@@ -68,10 +68,10 @@ class _WordDetailDialogState extends State<WordDetailDialog> {
             Text(word.english, style: const TextStyle(fontSize: 18)),
             Text(
               word.hindi,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
             ),
             const Divider(height: 32),
-            const Text("Built from these letters", style: TextStyle(color: Colors.grey)),
+            Text("Built from these letters", style: TextStyle(color: Colors.grey.shade700)),
             const SizedBox(height: 16),
             Wrap(
               alignment: WrapAlignment.center,
@@ -95,7 +95,7 @@ class _WordDetailDialogState extends State<WordDetailDialog> {
         Text(letter, style: const TextStyle(fontFamily: 'Nastaliq', fontSize: 32)),
         if (phonetic != null) ...[
           const SizedBox(height: 4),
-          Text(phonetic, style: const TextStyle(fontSize: 10, color: Colors.grey)),
+          Text(phonetic, style: TextStyle(fontSize: 10, color: Colors.grey.shade700)),
         ],
       ],
     );
