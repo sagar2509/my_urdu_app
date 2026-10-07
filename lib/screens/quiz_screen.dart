@@ -12,7 +12,7 @@ import '../state/progress_provider.dart';
 /// glyphs. Lessons with fewer than 4 glyphs (not enough for distractors)
 /// pull extra distractor options from the rest of the app's content.
 class QuizScreen extends StatefulWidget {
-  final Lesson lesson;
+  final CharLesson lesson;
 
   const QuizScreen({super.key, required this.lesson});
 
@@ -36,7 +36,11 @@ class _QuizScreenState extends State<QuizScreen> {
   List<QuizQuestion> _buildQuestions() {
     final distractorPool = widget.lesson.chars.length >= 4
         ? widget.lesson.chars
-        : ModuleRegistry.allLessons.expand((l) => l.chars).toSet().toList();
+        : ModuleRegistry.allLessons
+            .whereType<CharLesson>()
+            .expand((l) => l.chars)
+            .toSet()
+            .toList();
     final rng = Random();
     final targets = List<UrduChar>.from(widget.lesson.chars)..shuffle(rng);
     final take = min(10, targets.length);
@@ -66,7 +70,7 @@ class _QuizScreenState extends State<QuizScreen> {
         _selected = null;
       });
     } else {
-      context.read<ProgressProvider>().recordQuizScore(widget.lesson.id, _score);
+      context.read<ProgressProvider>().recordExerciseScore(widget.lesson.id, _score);
       setState(() => _finished = true);
     }
   }

@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
 import '../core/constants.dart';
 import '../data/module_registry.dart';
-import '../models/lesson.dart';
-import '../screens/lesson_screen.dart';
+import '../navigation/lesson_navigation.dart';
 
 /// Navigation drawer built from [ModuleRegistry] — adding a new module to
 /// the registry automatically adds it here, no drawer edits required.
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
-
-  void _openLesson(BuildContext context, Lesson lesson) {
-    Navigator.pop(context); // close the drawer
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => LessonScreen(lesson: lesson)),
-      (route) => route.isFirst,
-    );
-  }
 
   void _goHome(BuildContext context) {
     Navigator.pop(context); // close the drawer
@@ -54,7 +45,7 @@ class AppDrawer extends StatelessWidget {
                   ListTile(
                     leading: Icon(lesson.icon),
                     title: Text(lesson.title),
-                    onTap: () => _openLesson(context, lesson),
+                    onTap: () => openLessonFromDrawer(context, lesson),
                   ),
               ],
             ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../core/constants.dart';
 import '../data/module_registry.dart';
+import '../navigation/lesson_navigation.dart';
 import '../widgets/app_drawer.dart';
-import 'lesson_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -33,9 +33,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => LessonScreen(lesson: firstLesson)),
-              ),
+              onPressed: () => pushLesson(context, firstLesson),
               child: const Text("Begin with Basics"),
             ),
           ],

@@ -22,8 +22,8 @@ class ProgressProvider extends ChangeNotifier {
 
   int bestScoreFor(String lessonId) => _service.bestScoreFor(lessonId);
 
-  Future<void> recordQuizScore(String lessonId, int score) async {
-    await _service.recordQuizScore(lessonId, score);
+  Future<void> recordExerciseScore(String lessonId, int score) async {
+    await _service.recordExerciseScore(lessonId, score);
     notifyListeners();
   }
 }

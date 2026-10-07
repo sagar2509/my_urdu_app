@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../models/lesson.dart';
 import '../models/urdu_char.dart';
 import 'char_registry.dart';
+import 'word_registry.dart';
 
 /// Single source of truth for the app's content: Modules -> Lessons.
 ///
-/// To add a new module (e.g. "Module 2: Words"), append a [Module] here —
-/// the drawer and navigation pick it up automatically, no other changes needed.
+/// To add a new module, append a [Module] here — the drawer and navigation
+/// pick it up automatically, no other changes needed.
 class ModuleRegistry {
   static List<UrduChar> _basics() => CharRegistry.masterList
       .where((c) => CharRegistry.baseShapeGlyphs.contains(c.glyph))
@@ -22,31 +23,44 @@ class ModuleRegistry {
       title: 'Module 1: Alphabet',
       icon: Icons.book,
       lessons: [
-        Lesson(
+        CharLesson(
           id: 'basics',
           title: 'Basics',
           icon: Icons.architecture,
           charsBuilder: _basics,
         ),
-        Lesson(
+        CharLesson(
           id: 'advanced',
           title: 'Advanced',
           icon: Icons.auto_awesome,
           charsBuilder: _advanced,
         ),
-        Lesson(
+        CharLesson(
           id: 'numbers',
           title: 'Urdu Numbers',
           icon: Icons.numbers,
           charsBuilder: () => CharRegistry.urduNumbers,
           direction: TextDirection.ltr,
         ),
-        Lesson(
+        CharLesson(
           id: 'master_list',
           title: 'Complete Alphabet',
           icon: Icons.format_list_bulleted,
           charsBuilder: () => CharRegistry.masterList,
           showFilters: true,
+        ),
+      ],
+    ),
+    Module(
+      id: 'module_2',
+      title: 'Module 2: Words',
+      icon: Icons.menu_book,
+      lessons: [
+        WritingLesson(
+          id: 'two_letter_words',
+          title: 'Two-Letter Words',
+          icon: Icons.edit,
+          wordsBuilder: () => WordRegistry.twoLetterWords,
         ),
       ],
     ),

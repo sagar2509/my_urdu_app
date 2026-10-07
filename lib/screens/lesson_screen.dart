@@ -12,7 +12,7 @@ import 'quiz_screen.dart';
 /// Generalized from the old "chapter" screen so any lesson from any module
 /// renders the same way — new modules don't need a new screen.
 class LessonScreen extends StatefulWidget {
-  final Lesson lesson;
+  final CharLesson lesson;
 
   const LessonScreen({super.key, required this.lesson});
 

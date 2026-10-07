@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Persists learning progress (viewed glyphs, quiz best scores) locally.
 class ProgressService {
   static const _viewedPrefix = 'viewed_char_';
-  static const _quizScorePrefix = 'quiz_best_score_';
+  static const _exerciseScorePrefix = 'exercise_best_score_';
 
   final SharedPreferences _prefs;
 
@@ -23,12 +23,12 @@ class ProgressService {
       charIds.where(isViewed).length;
 
   int bestScoreFor(String lessonId) =>
-      _prefs.getInt('$_quizScorePrefix$lessonId') ?? 0;
+      _prefs.getInt('$_exerciseScorePrefix$lessonId') ?? 0;
 
-  Future<void> recordQuizScore(String lessonId, int score) async {
+  Future<void> recordExerciseScore(String lessonId, int score) async {
     final best = bestScoreFor(lessonId);
     if (score > best) {
-      await _prefs.setInt('$_quizScorePrefix$lessonId', score);
+      await _prefs.setInt('$_exerciseScorePrefix$lessonId', score);
     }
   }
 }
