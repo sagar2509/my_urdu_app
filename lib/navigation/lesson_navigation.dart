@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/lesson.dart';
 import '../screens/lesson_screen.dart';
+import '../screens/word_lesson_screen.dart';
 import '../screens/writing_practice_screen.dart';
 
 /// Maps a [Lesson] to the screen that renders it. The `switch` over the
@@ -9,6 +10,7 @@ import '../screens/writing_practice_screen.dart';
 Widget screenForLesson(Lesson lesson) {
   return switch (lesson) {
     CharLesson() => LessonScreen(lesson: lesson),
+    WordLesson() => WordLessonScreen(lesson: lesson),
     WritingLesson() => WritingPracticeScreen(lesson: lesson),
   };
 }

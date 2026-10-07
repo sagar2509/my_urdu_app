@@ -28,3 +28,9 @@ String normalizeUrdu(String input) {
 bool urduTextMatches(String input, String answer) {
   return normalizeUrdu(input) == normalizeUrdu(answer);
 }
+
+/// Splits a word into its individual Urdu alphabet letters (diacritics
+/// stripped) for a "this word = these letters" breakdown, e.g. پانی -> پ ا ن ی.
+List<String> splitIntoLetters(String word) {
+  return normalizeUrdu(word).runes.map(String.fromCharCode).toList();
+}

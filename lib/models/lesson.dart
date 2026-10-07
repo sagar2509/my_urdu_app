@@ -38,6 +38,28 @@ class CharLesson extends Lesson {
   List<UrduChar> get chars => charsBuilder();
 }
 
+/// A browsable list of words the learner can study before being tested on
+/// them — shows each word's letter-by-letter breakdown and its English/Hindi
+/// meaning. Pairs with a [WritingLesson] the same way Module 1's CharLessons
+/// pair with a quiz: learn first, then practice.
+class WordLesson extends Lesson {
+  final List<UrduWord> Function() wordsBuilder;
+
+  /// The [WritingLesson.id] of the companion practice exercise over the
+  /// same words, if any — lets the screen offer a "Practice" shortcut.
+  final String? practiceLessonId;
+
+  const WordLesson({
+    required super.id,
+    required super.title,
+    required super.icon,
+    required this.wordsBuilder,
+    this.practiceLessonId,
+  });
+
+  List<UrduWord> get words => wordsBuilder();
+}
+
 /// A set of words the learner must write in Urdu given an English or Hindi
 /// prompt, typed with the device's own Urdu keyboard — Module 2's lesson type.
 class WritingLesson extends Lesson {

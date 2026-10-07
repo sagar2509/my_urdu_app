@@ -56,11 +56,18 @@ class ModuleRegistry {
       title: 'Module 2: Words',
       icon: Icons.menu_book,
       lessons: [
+        WordLesson(
+          id: 'common_words_learn',
+          title: 'Learn: Common Words',
+          icon: Icons.menu_book,
+          wordsBuilder: () => WordRegistry.commonWords,
+          practiceLessonId: 'common_words_practice',
+        ),
         WritingLesson(
-          id: 'two_letter_words',
-          title: 'Two-Letter Words',
+          id: 'common_words_practice',
+          title: 'Practice: Write Common Words',
           icon: Icons.edit,
-          wordsBuilder: () => WordRegistry.twoLetterWords,
+          wordsBuilder: () => WordRegistry.commonWords,
         ),
       ],
     ),
