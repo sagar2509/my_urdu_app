@@ -1,6 +1,6 @@
 {
-    "name": "my_urdu_app",
-    "short_name": "my_urdu_app",
+    "name": "Urdu Qalam",
+    "short_name": "Urdu Qalam",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
